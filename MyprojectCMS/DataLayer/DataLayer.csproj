@@ -63,6 +63,10 @@
     <Compile Include="Models\BlogComment.cs" />
     <Compile Include="Models\BlogGroup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\IBlogGroupRepository.cs" />
+    <Compile Include="Repositories\IBlogRepository.cs" />
+    <Compile Include="Services\BlogGroupRipository.cs" />
+    <Compile Include="Services\BlogRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
