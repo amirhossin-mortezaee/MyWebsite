@@ -64,15 +64,14 @@ namespace DataLayer.Services
                 throw new Exception("عملیات حذف گروه با خطا مواجه شد");
             }
         }
+        public void save()
+        {
+            db.SaveChanges();
+        }
 
         public void Dispose()
         {
             db.Dispose();
-        }
-
-        public void save()
-        {
-            db.SaveChanges();
         }
     }
 }

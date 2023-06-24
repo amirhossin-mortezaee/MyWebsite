@@ -64,14 +64,14 @@ namespace DataLayer.Services
             }
         }
 
-        public void Dispose()
-        {
-            db.Dispose();
-        }
-
         public void save()
         {
             db.SaveChanges();
+        }
+
+        public void Dispose()
+        {
+            db.Dispose();
         }
     }
 }
