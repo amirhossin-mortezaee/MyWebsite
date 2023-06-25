@@ -13,112 +13,117 @@ using DataLayer.Services;
 
 namespace MyprojectCMS.Areas.Admin.Controllers
 {
-    public class BlogGroupsController : Controller
+    public class BlogsController : Controller
     {
-        private IBlogGroupRepository BlogGroupRepository;
-        MyProjectContext db = new MyProjectContext();
-        public BlogGroupsController()
+        private IBlogRepository blogRepository;
+        private MyProjectContext db = new MyProjectContext();
+        public BlogsController()
         {
-            BlogGroupRepository = new BlogGroupRipository(db);
+            blogRepository = new BlogRepository(db);
         }
-        // GET: Admin/BlogGroups
+        // GET: Admin/Blogs
         public ActionResult Index()
         {
-            return View(BlogGroupRepository.GetAll());
+            var blogs = db.Blogs.Include(b => b.BlogGroup);
+            return View(blogs.ToList());
         }
 
-        // GET: Admin/BlogGroups/Details/5
+        // GET: Admin/Blogs/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            BlogGroup blogGroup = BlogGroupRepository.GetById(id.Value);
-            if (blogGroup == null)
+            Blog blog = db.Blogs.Find(id);
+            if (blog == null)
             {
                 return HttpNotFound();
             }
-            return View(blogGroup);
+            return View(blog);
         }
 
-        // GET: Admin/BlogGroups/Create
+        // GET: Admin/Blogs/Create
         public ActionResult Create()
         {
-            return PartialView();
+            ViewBag.GroupId = new SelectList(db.BlogGroups, "GroupId", "GroupTitle");
+            return View();
         }
 
-        // POST: Admin/BlogGroups/Create
+        // POST: Admin/Blogs/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "GroupId,GroupTitle")] BlogGroup blogGroup)
+        public ActionResult Create([Bind(Include = "BlogId,GroupId,Title,ShortDescription,BlogText,Visite,ImageName,CreateDate")] Blog blog)
         {
             if (ModelState.IsValid)
             {
-                BlogGroupRepository.Created(blogGroup);
-                BlogGroupRepository.save();
+                db.Blogs.Add(blog);
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(blogGroup);
+            ViewBag.GroupId = new SelectList(db.BlogGroups, "GroupId", "GroupTitle", blog.GroupId);
+            return View(blog);
         }
 
-        // GET: Admin/BlogGroups/Edit/5
+        // GET: Admin/Blogs/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            BlogGroup blogGroup = BlogGroupRepository.GetById(id.Value);
-            if (blogGroup == null)
+            Blog blog = db.Blogs.Find(id);
+            if (blog == null)
             {
                 return HttpNotFound();
             }
-            return PartialView(blogGroup);
+            ViewBag.GroupId = new SelectList(db.BlogGroups, "GroupId", "GroupTitle", blog.GroupId);
+            return View(blog);
         }
 
-        // POST: Admin/BlogGroups/Edit/5
+        // POST: Admin/Blogs/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "GroupId,GroupTitle")] BlogGroup blogGroup)
+        public ActionResult Edit([Bind(Include = "BlogId,GroupId,Title,ShortDescription,BlogText,Visite,ImageName,CreateDate")] Blog blog)
         {
             if (ModelState.IsValid)
             {
-                BlogGroupRepository.Edit(blogGroup);
-                BlogGroupRepository.save();
+                db.Entry(blog).State = EntityState.Modified;
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(blogGroup);
+            ViewBag.GroupId = new SelectList(db.BlogGroups, "GroupId", "GroupTitle", blog.GroupId);
+            return View(blog);
         }
 
-        // GET: Admin/BlogGroups/Delete/5
+        // GET: Admin/Blogs/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            BlogGroup blogGroup = BlogGroupRepository.GetById(id.Value);
-            if (blogGroup == null)
+            Blog blog = db.Blogs.Find(id);
+            if (blog == null)
             {
                 return HttpNotFound();
             }
-            return PartialView(blogGroup);
+            return View(blog);
         }
 
-        // POST: Admin/BlogGroups/Delete/5
+        // POST: Admin/Blogs/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            BlogGroup blogGroup = BlogGroupRepository.GetById(id);
-            BlogGroupRepository.DeleteById(id);
-            BlogGroupRepository.save();
+            Blog blog = db.Blogs.Find(id);
+            db.Blogs.Remove(blog);
+            db.SaveChanges();
             return RedirectToAction("Index");
         }
 
@@ -126,7 +131,7 @@ namespace MyprojectCMS.Areas.Admin.Controllers
         {
             if (disposing)
             {
-                BlogGroupRepository.save();
+                db.Dispose();
             }
             base.Dispose(disposing);
         }

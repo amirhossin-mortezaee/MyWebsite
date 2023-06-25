@@ -4,11 +4,13 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 
-namespace DataLayer.Models
+namespace DataLayer.Models.ViewModels
 {
-    public class Blog
+    public class BlogViewModel
     {
+
         [Key]
         public int BlogId { get; set; }
         [Display(Name = "گروه بندی وبلاگ")]
@@ -32,6 +34,6 @@ namespace DataLayer.Models
         [Display(Name = "تاریخ ایجاد")]
         public DateTime CreateDate { get; set; }
         public virtual BlogGroup BlogGroup { get; set; }
-        public virtual ICollection<BlogComment> BlogComments { get; set; }
+        public HttpPostedFileBase ImageUpload { get; set; }
     }
 }

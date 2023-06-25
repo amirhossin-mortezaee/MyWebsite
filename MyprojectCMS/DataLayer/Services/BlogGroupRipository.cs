@@ -12,7 +12,11 @@ namespace DataLayer.Services
 {
     public class BlogGroupRipository : IBlogGroupRepository
     {
-        MyProjectContext db = new MyProjectContext();
+        MyProjectContext db;
+        public BlogGroupRipository(MyProjectContext context)
+        {
+            this.db = context;
+        }
         public IEnumerable<BlogGroup> GetAll()
         {
             var list = db.BlogGroups.ToList();
