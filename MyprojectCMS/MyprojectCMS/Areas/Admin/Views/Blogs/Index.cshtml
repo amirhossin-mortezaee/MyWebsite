@@ -1,5 +1,5 @@
 ﻿@model IEnumerable<DataLayer.Models.Blog>
-
+@using MyprojectCMS.Utilities
 @{
     ViewBag.Title = "Index";
 }
@@ -12,6 +12,9 @@
 <table class="table">
     <tr>
         <th>
+            @Html.DisplayNameFor(model => model.ImageName)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.BlogGroup.GroupTitle)
         </th>
         <th>
@@ -21,13 +24,7 @@
             @Html.DisplayNameFor(model => model.ShortDescription)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.BlogText)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.Visite)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ImageName)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.CreateDate)
@@ -36,34 +33,31 @@
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.BlogGroup.GroupTitle)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ShortDescription)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.BlogText)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Visite)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ImageName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreateDate)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.BlogId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.BlogId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.BlogId })
-        </td>
-    </tr>
+<tr>
+    <td>
+        <img src="~/Images/@item.ImageName" class="thumbnail" style="width : 100px; height:100px;"/>
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.BlogGroup.GroupTitle)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Title)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.ShortDescription)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Visite)
+    </td>
+    <td>
+        @item.CreateDate.ConvertToShamsi()
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.BlogId }) |
+        @Html.ActionLink("Details", "Details", new { id = item.BlogId }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.BlogId })
+    </td>
+</tr>
 }
 
 </table>

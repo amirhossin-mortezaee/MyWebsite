@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using DataLayer.Context;
 using DataLayer.Models;
+using DataLayer.Models.ViewModels;
 using DataLayer.Repositories;
 using DataLayer.Services;
 
@@ -16,16 +18,18 @@ namespace MyprojectCMS.Areas.Admin.Controllers
     public class BlogsController : Controller
     {
         private IBlogRepository blogRepository;
+        private IBlogGroupRepository blogGroupRepository;
         private MyProjectContext db = new MyProjectContext();
         public BlogsController()
         {
             blogRepository = new BlogRepository(db);
+            blogGroupRepository = new BlogGroupRipository(db);
         }
         // GET: Admin/Blogs
         public ActionResult Index()
         {
-            var blogs = db.Blogs.Include(b => b.BlogGroup);
-            return View(blogs.ToList());
+            var GetList = blogRepository.GetAll();
+            return View(GetList.ToList());
         }
 
         // GET: Admin/Blogs/Details/5
@@ -35,7 +39,7 @@ namespace MyprojectCMS.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Blog blog = db.Blogs.Find(id);
+            Blog blog = blogRepository.GetById(id.Value);
             if (blog == null)
             {
                 return HttpNotFound();
@@ -46,7 +50,7 @@ namespace MyprojectCMS.Areas.Admin.Controllers
         // GET: Admin/Blogs/Create
         public ActionResult Create()
         {
-            ViewBag.GroupId = new SelectList(db.BlogGroups, "GroupId", "GroupTitle");
+            ViewBag.GroupId = new SelectList(blogGroupRepository.GetAll(), "GroupId", "GroupTitle");
             return View();
         }
 
@@ -55,17 +59,37 @@ namespace MyprojectCMS.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "BlogId,GroupId,Title,ShortDescription,BlogText,Visite,ImageName,CreateDate")] Blog blog)
+        public ActionResult Create(BlogViewModel blogVM)
         {
             if (ModelState.IsValid)
             {
-                db.Blogs.Add(blog);
-                db.SaveChanges();
+                Blog blog = new Blog()
+                {
+                    BlogId = blogVM.BlogId,
+                    GroupId = blogVM.GroupId,
+                    Title = blogVM.Title,
+                    ShortDescription = blogVM.ShortDescription,
+                    BlogText = blogVM.BlogText,
+                    ImageName = blogVM.ImageName,
+                    CreateDate = blogVM.CreateDate,
+                    Visite = blogVM.Visite
+                };
+                blog.Visite = 0;
+                blog.CreateDate = DateTime.Now;
+                if (blogVM.ImageUpload != null)
+                {
+                    blog.ImageName = Guid.NewGuid()+Path.GetExtension(blogVM.ImageUpload.FileName);
+                    blogVM.ImageUpload.SaveAs(Server.MapPath("/Images/" + blog.ImageName));
+                }
+
+
+                blogRepository.Created(blog);
+                blogRepository.save();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.GroupId = new SelectList(db.BlogGroups, "GroupId", "GroupTitle", blog.GroupId);
-            return View(blog);
+            ViewBag.GroupId = new SelectList(db.BlogGroups, "GroupId", "GroupTitle", blogVM.GroupId);
+            return View(blogVM);
         }
 
         // GET: Admin/Blogs/Edit/5

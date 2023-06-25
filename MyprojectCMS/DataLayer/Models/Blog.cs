@@ -30,6 +30,7 @@ namespace DataLayer.Models
         [Display(Name = "نام تصویر")]
         public string ImageName { get; set; }
         [Display(Name = "تاریخ ایجاد")]
+        [DisplayFormat(DataFormatString = "{0:yyyy/mm/dd}")]
         public DateTime CreateDate { get; set; }
         public virtual BlogGroup BlogGroup { get; set; }
         public virtual ICollection<BlogComment> BlogComments { get; set; }
