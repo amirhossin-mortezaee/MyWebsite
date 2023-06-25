@@ -44,7 +44,7 @@ namespace MyprojectCMS.Areas.Admin.Controllers
         // GET: Admin/BlogGroups/Create
         public ActionResult Create()
         {
-            return View();
+            return PartialView();
         }
 
         // POST: Admin/BlogGroups/Create
@@ -76,7 +76,7 @@ namespace MyprojectCMS.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
-            return View(blogGroup);
+            return PartialView(blogGroup);
         }
 
         // POST: Admin/BlogGroups/Edit/5
@@ -107,7 +107,7 @@ namespace MyprojectCMS.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
-            return View(blogGroup);
+            return PartialView(blogGroup);
         }
 
         // POST: Admin/BlogGroups/Delete/5

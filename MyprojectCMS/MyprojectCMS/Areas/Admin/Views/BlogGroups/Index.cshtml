@@ -7,7 +7,7 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    <a class="btn btn-sm btn-success" id="ButtonNewGroup">افزودن گروه</a>
 </p>
 <table class="table">
     <tr>
@@ -17,17 +17,67 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.GroupTitle)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.GroupId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.GroupId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.GroupId })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.GroupTitle)
+            </td>
+            <td>
+                <a class="btn btn-sm btn-warning" onclick="EditGroup(@item.GroupId)">ویرایش گروه</a>
+                <a class="btn btn-sm btn-danger" onclick="DeleteGroup(@item.GroupId)">حذف گروه</a>
+            </td>
+        </tr>
+    }
 
 </table>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+            </div>
+            <div class="modal-body" id="myModalBody">
+                ...
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script src="~/Scripts/modal.js"></script>
+    <script>
+        $("#ButtonNewGroup").click(function () {
+            $.get("/Admin/BlogGroups/Create", function (result) {
+
+                $("#myModal").modal();
+                $("#myModalLabel").html("افزودن گروه");
+                $("#myModalBody").html(result);
+            });
+
+        });
+        function EditGroup(id) {
+            $.get("/Admin/BlogGroups/Edit/" + id, function (result) {
+
+                $("#myModal").modal();
+                $("#myModalLabel").html("ویرایش گروه");
+                $("#myModalBody").html(result);
+            });
+        }
+
+        function DeleteGroup(id) {
+            $.get("/Admin/BlogGroups/Delete/" + id, function (result) {
+
+                $("#myModal").modal();
+                $("#myModalLabel").html("حذف گروه");
+                $("#myModalBody").html(result);
+            });
+        }
+    </script>
+}
+
+
+
