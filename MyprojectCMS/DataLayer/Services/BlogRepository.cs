@@ -1,5 +1,6 @@
 ﻿using DataLayer.Context;
 using DataLayer.Models;
+using DataLayer.Models.ViewModels;
 using DataLayer.Repositories;
 using System;
 using System.Collections.Generic;
@@ -67,7 +68,21 @@ namespace DataLayer.Services
                 throw new Exception("عملیات حذف وبلاگ  با خطا مواجه شد");
             }
         }
-
+        public BlogViewModel GetByIdForVM(int blogId)
+        {
+            var getId = db.Blogs.Where(model => model.BlogId == blogId).Select(model => new BlogViewModel()
+            {
+                BlogId = model.BlogId,
+                GroupId = model.GroupId,
+                Title = model.Title,
+                ShortDescription = model.ShortDescription,
+                BlogText = model.BlogText,
+                ImageName = model.ImageName,
+                CreateDate = model.CreateDate,
+                Visite = model.Visite
+            }).FirstOrDefault();
+            return getId;
+        }
         public void save()
         {
             db.SaveChanges();

@@ -158,7 +158,6 @@
     <Content Include="Areas\Admin\Views\BlogGroups\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Blogs\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Blogs\Delete.cshtml" />
-    <Content Include="Areas\Admin\Views\Blogs\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Blogs\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Blogs\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />

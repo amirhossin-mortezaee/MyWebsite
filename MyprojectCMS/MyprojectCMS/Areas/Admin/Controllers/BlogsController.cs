@@ -32,21 +32,6 @@ namespace MyprojectCMS.Areas.Admin.Controllers
             return View(GetList.ToList());
         }
 
-        // GET: Admin/Blogs/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Blog blog = blogRepository.GetById(id.Value);
-            if (blog == null)
-            {
-                return HttpNotFound();
-            }
-            return View(blog);
-        }
-
         // GET: Admin/Blogs/Create
         public ActionResult Create()
         {
@@ -99,7 +84,7 @@ namespace MyprojectCMS.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Blog blog = db.Blogs.Find(id);
+            BlogViewModel blog = blogRepository.GetByIdForVM(id.Value);
             if (blog == null)
             {
                 return HttpNotFound();
@@ -113,16 +98,38 @@ namespace MyprojectCMS.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "BlogId,GroupId,Title,ShortDescription,BlogText,Visite,ImageName,CreateDate")] Blog blog)
+        public ActionResult Edit(BlogViewModel blogVM )
         {
             if (ModelState.IsValid)
             {
-                db.Entry(blog).State = EntityState.Modified;
-                db.SaveChanges();
+                Blog blog = new Blog()
+                {
+                    BlogId = blogVM.BlogId,
+                    GroupId = blogVM.GroupId,
+                    Title = blogVM.Title,
+                    ShortDescription = blogVM.ShortDescription,
+                    BlogText = blogVM.BlogText,
+                    ImageName = blogVM.ImageName,
+                    CreateDate = blogVM.CreateDate,
+                    Visite = blogVM.Visite
+                };
+
+                if (blogVM.ImageUpload != null)
+                {
+                    
+                    if (blog.ImageName != null)
+                    {
+                        System.IO.File.Delete(Server.MapPath("/Images/" + blog.ImageName));
+                    }
+                    blog.ImageName = Guid.NewGuid() + Path.GetExtension(blogVM.ImageUpload.FileName);
+                    blogVM.ImageUpload.SaveAs(Server.MapPath("/Images/" + blog.ImageName));
+                }
+                blogRepository.Edit(blog);
+                blogRepository.save();
                 return RedirectToAction("Index");
             }
-            ViewBag.GroupId = new SelectList(db.BlogGroups, "GroupId", "GroupTitle", blog.GroupId);
-            return View(blog);
+            ViewBag.GroupId = new SelectList(db.BlogGroups, "GroupId", "GroupTitle", blogVM.GroupId);
+            return View(blogVM);
         }
 
         // GET: Admin/Blogs/Delete/5
@@ -132,7 +139,7 @@ namespace MyprojectCMS.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Blog blog = db.Blogs.Find(id);
+            Blog blog = blogRepository.GetById(id.Value);
             if (blog == null)
             {
                 return HttpNotFound();
@@ -145,8 +152,12 @@ namespace MyprojectCMS.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Blog blog = db.Blogs.Find(id);
-            db.Blogs.Remove(blog);
+            Blog blog = blogRepository.GetById(id);
+            if (blog.ImageName != null)
+            {
+                System.IO.File.Delete(Server.MapPath("/Images/" + blog.ImageName));
+            }
+            blogRepository.DeleteById(id);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
@@ -155,6 +166,8 @@ namespace MyprojectCMS.Areas.Admin.Controllers
         {
             if (disposing)
             {
+                blogRepository.Dispose();
+                blogGroupRepository.Dispose();
                 db.Dispose();
             }
             base.Dispose(disposing);
