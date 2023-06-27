@@ -1,0 +1,51 @@
+﻿@model IEnumerable<DataLayer.Models.Slider>
+@using MyProjectCMS.Utilities
+
+@{
+    ViewBag.Title = "لیست اسلایدر";
+}
+
+<p style="margin-top:50px;">
+    @Html.ActionLink("اسلایدر جدید", "Create")
+</p>
+<table class="table" style=" border: solid; border-color: cadetblue; text-align: center">
+    <tr>
+        <th style="text-align:center">
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th style="text-align:center">
+            @Html.DisplayNameFor(model => model.StartDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EndDate)
+        </th>
+        <th style="text-align:center">
+            @Html.DisplayNameFor(model => model.IsActive)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EndDate)
+            </td>
+            <td>
+                @Html.YesNo(@item.IsActive)
+
+            </td>
+            <td>
+                @Html.ActionLink("ویرایش", "Edit", new { id = item.SlideID }) |
+                @Html.ActionLink("حذف", "Delete", new { id = item.SlideID })
+            </td>
+        </tr>
+    }
+
+</table>

@@ -1,4 +1,7 @@
-﻿using System;
+﻿using DataLayer.Context;
+using DataLayer.Services;
+using DataLayer.Repositories;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,6 +11,12 @@ namespace MyprojectCMS.Controllers
 {
     public class HomeController : Controller
     {
+        private ISliderRepository sliderRepository;
+        private MyProjectContext db = new MyProjectContext();
+        public HomeController()
+        {
+            sliderRepository = new SliderRepository(db);
+        }
         public ActionResult Index()
         {
             return View();
@@ -25,6 +34,11 @@ namespace MyprojectCMS.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+
+        public ActionResult Slider()
+        {
+            return PartialView(sliderRepository.GetAll());
         }
     }
 }
