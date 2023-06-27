@@ -24,6 +24,12 @@ namespace DataLayer.Services
             return GetList;
         }
 
+        public IEnumerable<Blog> LastBlog(int take = 3)
+        {
+            var GetLastBlog = db.Blogs.OrderByDescending(item => item.CreateDate).Take(take);
+            return GetLastBlog;
+        }
+
         public Blog GetById(int BlogId)
         {
             var GetId = db.Blogs.Find(BlogId);

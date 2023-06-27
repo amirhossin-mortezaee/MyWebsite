@@ -130,6 +130,7 @@
     <Compile Include="Areas\Admin\Controllers\BlogGroupsController.cs" />
     <Compile Include="Areas\Admin\Controllers\BlogsController.cs" />
     <Compile Include="Areas\Admin\Controllers\SlidersController.cs" />
+    <Compile Include="Controllers\BloggController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -671,6 +672,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_myWebsiteLayout.cshtml" />
     <Content Include="Views\Home\Slider.cshtml" />
+    <Content Include="Views\Blogg\lastBlogs.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
