@@ -12,14 +12,21 @@ namespace MyprojectCMS.Controllers
     public class HomeController : Controller
     {
         private ISliderRepository sliderRepository;
+        private ILogoRepository LogoRepository;
         private MyProjectContext db = new MyProjectContext();
         public HomeController()
         {
             sliderRepository = new SliderRepository(db);
+            LogoRepository = new LogoRepository(db);
         }
         public ActionResult Index()
         {
             return View();
+        }
+
+        public ActionResult Logo()
+        {
+            return PartialView(LogoRepository.GetAll());
         }
 
         public ActionResult About()

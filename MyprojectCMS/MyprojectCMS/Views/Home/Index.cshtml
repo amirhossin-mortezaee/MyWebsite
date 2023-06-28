@@ -2,5 +2,8 @@
     ViewBag.Title = "Home Page";
 }
 
+@section Logo{
+    @Html.Action("Logo","Home")
+}
 @Html.Action("Slider")
 @Html.Action("lastBlogs","Blogg")

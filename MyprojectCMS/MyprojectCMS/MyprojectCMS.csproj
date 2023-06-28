@@ -129,6 +129,7 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\BlogGroupsController.cs" />
     <Compile Include="Areas\Admin\Controllers\BlogsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\LogoesController.cs" />
     <Compile Include="Areas\Admin\Controllers\SlidersController.cs" />
     <Compile Include="Controllers\BloggController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -642,6 +643,10 @@
     <Content Include="Areas\Admin\Views\Sliders\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\Sliders\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Sliders\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Logoes\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Logoes\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Logoes\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Logoes\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\Jquery-1.9.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -673,6 +678,7 @@
     <Content Include="Views\Shared\_myWebsiteLayout.cshtml" />
     <Content Include="Views\Home\Slider.cshtml" />
     <Content Include="Views\Blogg\lastBlogs.cshtml" />
+    <Content Include="Views\Home\Logo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

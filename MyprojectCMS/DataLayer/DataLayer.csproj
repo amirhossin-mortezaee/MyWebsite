@@ -62,19 +62,27 @@
     <Compile Include="Migrations\202306270628048_slider.Designer.cs">
       <DependentUpon>202306270628048_slider.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202306280706484_add-table-logo.cs" />
+    <Compile Include="Migrations\202306280706484_add-table-logo.Designer.cs">
+      <DependentUpon>202306280706484_add-table-logo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Blog.cs" />
     <Compile Include="Models\BlogComment.cs" />
     <Compile Include="Models\BlogGroup.cs" />
+    <Compile Include="Models\Logo.cs" />
     <Compile Include="Models\Slider.cs" />
     <Compile Include="Models\ViewModels\BlogViewModel.cs" />
+    <Compile Include="Models\ViewModels\LogoViewModel.cs" />
     <Compile Include="Models\ViewModels\SliderViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\IBlogGroupRepository.cs" />
     <Compile Include="Repositories\IBlogRepository.cs" />
+    <Compile Include="Repositories\ILogoRepository.cs" />
     <Compile Include="Repositories\ISliderRepository.cs" />
     <Compile Include="Services\BlogGroupRipository.cs" />
     <Compile Include="Services\BlogRepository.cs" />
+    <Compile Include="Services\LogoRepository.cs" />
     <Compile Include="Services\SliderRepository.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -87,6 +95,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202306270628048_slider.resx">
       <DependentUpon>202306270628048_slider.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202306280706484_add-table-logo.resx">
+      <DependentUpon>202306280706484_add-table-logo.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
