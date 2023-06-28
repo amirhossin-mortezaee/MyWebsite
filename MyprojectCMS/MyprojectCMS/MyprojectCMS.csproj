@@ -127,6 +127,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\BlogCommentsController.cs" />
     <Compile Include="Areas\Admin\Controllers\BlogGroupsController.cs" />
     <Compile Include="Areas\Admin\Controllers\BlogsController.cs" />
     <Compile Include="Areas\Admin\Controllers\LogoesController.cs" />
@@ -647,6 +648,9 @@
     <Content Include="Areas\Admin\Views\Logoes\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\Logoes\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Logoes\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\BlogComments\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\BlogComments\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\BlogComments\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\Jquery-1.9.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />

@@ -17,5 +17,17 @@ namespace MyprojectCMS
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
+
+        protected void Application_Error(object sender, EventArgs e)
+        {
+            Exception exception = Server.GetLastError();
+            Response.Clear();
+            RouteData routeData = new RouteData();
+            routeData.Values.Add("controller", "Error");
+            routeData.Values.Add("Action", "Error");
+            routeData.Values.Add("Error", exception);
+            Server.ClearError(); Response.TrySkipIisCustomErrors = true;
+
+        }
     }
 }
