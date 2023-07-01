@@ -21,6 +21,8 @@ namespace MyprojectCMS.Controllers
         }
         public ActionResult Index()
         {
+            int id = 1;
+            ViewBag.CourentBlog = id;
             return View();
         }
 

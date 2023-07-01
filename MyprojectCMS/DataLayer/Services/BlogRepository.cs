@@ -35,6 +35,18 @@ namespace DataLayer.Services
             var GetId = db.Blogs.Find(BlogId);
             return GetId;
         }
+
+        public IEnumerable<Blog> ArchiveBlog(int id = 1)
+        {
+            int take = 3;
+            int skip = (id - 1) * take;
+            return (db.Blogs.OrderBy(model => model.CreateDate).Skip(skip).Take(take).ToList());
+        }
+
+        public int CountBlog()
+        {
+            return (db.Blogs.Count());
+        }
         public bool Created(Blog blog)
         {
             try
@@ -98,5 +110,7 @@ namespace DataLayer.Services
         {
             db.Dispose();
         }
+
+        
     }
 }

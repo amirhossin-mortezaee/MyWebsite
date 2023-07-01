@@ -683,6 +683,7 @@
     <Content Include="Views\Home\Slider.cshtml" />
     <Content Include="Views\Blogg\lastBlogs.cshtml" />
     <Content Include="Views\Home\Logo.cshtml" />
+    <Content Include="Views\Blogg\Archive.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

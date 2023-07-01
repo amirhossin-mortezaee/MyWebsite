@@ -22,5 +22,16 @@ namespace MyprojectCMS.Controllers
         {
             return PartialView(blogRepository.GetAll());
         }
+
+        [Route("Archive/{id}")]
+
+        public ActionResult Archive(int id = 1)
+        {
+            int take = 3;
+            ViewBag.CourentBlog = id;
+            ViewBag.BlogCount = blogRepository.CountBlog() / take;
+            var GetArchive = blogRepository.ArchiveBlog(id);
+            return View(GetArchive);
+        }
     }
 }

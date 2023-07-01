@@ -12,6 +12,8 @@ namespace DataLayer.Repositories
     {
         IEnumerable<Blog> GetAll();
         IEnumerable<Blog> LastBlog(int take = 3);
+        IEnumerable<Blog> ArchiveBlog(int id = 1);
+        int CountBlog();
         Blog GetById(int BlogId);
         BlogViewModel GetByIdForVM(int BlogId);
         bool Created(Blog blog);
