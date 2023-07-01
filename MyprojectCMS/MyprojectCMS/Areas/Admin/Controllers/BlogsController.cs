@@ -57,7 +57,8 @@ namespace MyprojectCMS.Areas.Admin.Controllers
                     BlogText = blogVM.BlogText,
                     ImageName = blogVM.ImageName,
                     CreateDate = blogVM.CreateDate,
-                    Visite = blogVM.Visite
+                    Visite = blogVM.Visite,
+                    Tag = blogVM.Tag
                 };
                 blog.Visite = 0;
                 blog.CreateDate = DateTime.Now;
@@ -111,7 +112,8 @@ namespace MyprojectCMS.Areas.Admin.Controllers
                     BlogText = blogVM.BlogText,
                     ImageName = blogVM.ImageName,
                     CreateDate = blogVM.CreateDate,
-                    Visite = blogVM.Visite
+                    Visite = blogVM.Visite,
+                    Tag = blogVM.Tag
                 };
 
                 if (blogVM.ImageUpload != null)

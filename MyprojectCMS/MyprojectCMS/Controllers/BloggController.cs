@@ -33,5 +33,20 @@ namespace MyprojectCMS.Controllers
             var GetArchive = blogRepository.ArchiveBlog(id);
             return View(GetArchive);
         }
+
+        [Route("Blogs/{id}")]
+        public ActionResult ShowBlogs(int id)
+        {
+            var blogs = blogRepository.GetById(id);
+            if (blogs == null)
+            {
+                return HttpNotFound();
+            }
+            blogs.Visite += 1;
+            blogRepository.Edit(blogs);
+            blogRepository.save();
+            return View(blogs);
+
+        }
     }
 }

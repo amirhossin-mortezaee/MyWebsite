@@ -97,7 +97,8 @@ namespace DataLayer.Services
                 BlogText = model.BlogText,
                 ImageName = model.ImageName,
                 CreateDate = model.CreateDate,
-                Visite = model.Visite
+                Visite = model.Visite,
+                Tag = model.Tag
             }).FirstOrDefault();
             return getId;
         }

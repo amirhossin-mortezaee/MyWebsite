@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Mvc;
 
 namespace DataLayer.Models
 {
@@ -24,7 +25,10 @@ namespace DataLayer.Models
         [Display(Name = "متن اصلی")]
         [Required(ErrorMessage = " {0} وارد کنید")]
         [DataType(DataType.MultilineText)]
+        [AllowHtml]
         public string BlogText { get; set; }
+        [Display(Name = "برچسب ها")]
+        public string Tag { get; set; }
         [Display(Name = "بازدید")]
         public int Visite { get; set; }
         [Display(Name = "نام تصویر")]
