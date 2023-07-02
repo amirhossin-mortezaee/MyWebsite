@@ -51,7 +51,7 @@
                                     <div class="pull-left tags">
                                         @foreach (var item in Model.Tag.Split('،'))
                                         {
-                                            <a href="#">@item </a>
+                                            <a href="/Search?q=@item ">@item </a>
                                         }
 
                                     </div>
@@ -122,9 +122,9 @@
                             <div class="sidebar-title">
                                 <h5>جستجو : -</h5>
                             </div>
-                            <form method="post" action="https://expert-themes.com/html/globex/contact.html">
+                            <form method="post" action="/Search">
                                 <div class="form-group">
-                                    <input type="search" name="search-field" value="" placeholder="جستجو ... " required>
+                                    <input type="search" name="q" value="" placeholder="جستجو ... " required>
                                     <button type="submit"><span class="icon fa fa-search"></span></button>
                                 </div>
                             </form>

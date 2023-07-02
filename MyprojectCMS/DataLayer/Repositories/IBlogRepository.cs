@@ -11,6 +11,7 @@ namespace DataLayer.Repositories
     public interface IBlogRepository : IDisposable
     {
         IEnumerable<Blog> GetAll();
+        IEnumerable<Blog> Search(string searchParamter);
         IEnumerable<Blog> LastBlog(int take = 3);
         IEnumerable<Blog> ArchiveBlog(int id = 1);
         int CountBlog();

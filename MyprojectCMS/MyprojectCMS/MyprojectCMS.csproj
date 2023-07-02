@@ -134,6 +134,7 @@
     <Compile Include="Areas\Admin\Controllers\SlidersController.cs" />
     <Compile Include="Controllers\BloggController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -1819,6 +1820,7 @@
     <Content Include="Views\Blogg\ShowBlogs.cshtml" />
     <Content Include="Views\Blogg\showComment.cshtml" />
     <Content Include="Views\Blogg\leftCornerlastBlogs.cshtml" />
+    <Content Include="Views\Search\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

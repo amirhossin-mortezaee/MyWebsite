@@ -24,6 +24,11 @@ namespace DataLayer.Services
             return GetList;
         }
 
+        public IEnumerable<Blog> Search(string searchParamter)
+        {
+            return db.Blogs.Where(model => model.BlogText.Contains(searchParamter) || model.Tag.Contains(searchParamter) || model.ShortDescription.Contains(searchParamter) || model.Title.Contains(searchParamter)).Distinct();
+        }
+
         public IEnumerable<Blog> LastBlog(int take = 3)
         {
             var GetLastBlog = db.Blogs.OrderByDescending(item => item.CreateDate).Take(take);
@@ -111,7 +116,5 @@ namespace DataLayer.Services
         {
             db.Dispose();
         }
-
-        
     }
 }
