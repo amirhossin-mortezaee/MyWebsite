@@ -10,6 +10,7 @@ namespace DataLayer.Repositories
     public interface IBlogCommentRepository : IDisposable
     {
         IEnumerable<BlogComment> getAll();
+        IEnumerable<BlogComment> getCommmentByBlogId(int blogId);
         BlogComment GetById(int commentID);
         bool Create(BlogComment comment);
         bool DeleteByID(int commentID);

@@ -1,4 +1,5 @@
 ﻿using DataLayer.Context;
+using DataLayer.Models;
 using DataLayer.Repositories;
 using DataLayer.Services;
 using System;
@@ -11,16 +12,23 @@ namespace MyprojectCMS.Controllers
 {
     public class BloggController : Controller
     {
-        IBlogRepository blogRepository;
-        MyProjectContext db = new MyProjectContext();
+        private IBlogRepository blogRepository;
+        private IBlogCommentRepository blogCommentRepository;
+       private MyProjectContext db = new MyProjectContext();
         public BloggController()
         {
             blogRepository = new BlogRepository(db);
+            blogCommentRepository = new BlogCommentRepository(db);
         }
         // GET: Blogg
         public ActionResult lastBlogs()
         {
-            return PartialView(blogRepository.GetAll());
+            return PartialView(blogRepository.LastBlog());
+        }
+
+        public ActionResult leftCornerlastBlogs()
+        {
+            return PartialView(blogRepository.LastBlog());
         }
 
         [Route("Archive/{id}")]
@@ -47,6 +55,26 @@ namespace MyprojectCMS.Controllers
             blogRepository.save();
             return View(blogs);
 
+        }
+
+        public ActionResult AddComment(int id,string name , string email , string comment)
+        {
+            BlogComment addComment = new BlogComment()
+            {
+                CreateDate = DateTime.Now,
+                BlogId = id,
+                Name = name,
+                Email = email,
+                Comment = comment
+            };
+            blogCommentRepository.Create(addComment);
+            blogCommentRepository.Save();
+            return PartialView("showComment",blogCommentRepository.getCommmentByBlogId(id));
+        }
+
+        public ActionResult showComment(int id)
+        {
+            return PartialView(blogCommentRepository.getCommmentByBlogId(id));
         }
     }
 }

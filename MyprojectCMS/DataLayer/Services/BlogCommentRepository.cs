@@ -24,6 +24,11 @@ namespace DataLayer.Services
             return blogComments;
         }
 
+        public IEnumerable<BlogComment> getCommmentByBlogId(int blogId)
+        {
+            return db.BlogComments.Where(model => model.BlogId == blogId);
+        }
+
         public BlogComment GetById(int commentID)
         {
             var GetID = db.BlogComments.Find(commentID);
@@ -67,11 +72,5 @@ namespace DataLayer.Services
         {
             db.Dispose();
         }
-
-       
-
-        
-
-        
     }
 }

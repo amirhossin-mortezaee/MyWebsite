@@ -1817,6 +1817,8 @@
     <Content Include="Views\Home\Logo.cshtml" />
     <Content Include="Views\Blogg\Archive.cshtml" />
     <Content Include="Views\Blogg\ShowBlogs.cshtml" />
+    <Content Include="Views\Blogg\showComment.cshtml" />
+    <Content Include="Views\Blogg\leftCornerlastBlogs.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

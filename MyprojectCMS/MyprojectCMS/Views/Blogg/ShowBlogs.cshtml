@@ -27,7 +27,7 @@
                         <div class="upper-box">
                             <h3>@Model.Title</h3>
                             <ul class="post-meta">
-                                <li><span class="icon flaticon-comment"></span>تعداد 3 نظر </li>
+                                <li><span class="icon flaticon-comment"></span>تعداد @Model.BlogComments.Count() نظر </li>
                             </ul>
                         </div>
                         <div class="image">
@@ -70,75 +70,46 @@
 
                     <div class="comments-area">
                         <div class="group-title">
-                            <h3>2 نظرات </h3>
+                            <h3>@Model.BlogComments.Count() نظرات </h3>
                         </div>
-
-                        <div class="comment-box">
-                            <div class="comment">
-                                <div class="author-thumb"><img src="images/resource/author-1.jpg" alt=""></div>
-                                <div class="comment-info clearfix"><strong>جعفر خان عباسی </strong><div class="comment-time">15 خرداد | ساعت 9 صبح تا 19 عصر</div></div>
-                                <div class="text">یک مثال بی اهمیت ، که همیشه یک ورزش بدنی را انجام می دهد ، به جز کسب یک مزیت.</div>
-                                <a class="theme-btn reply-btn" href="#">پاسخ </a>
-                            </div>
-                        </div>
-
-                        <div class="comment-box reply-comment">
-                            <div class="comment">
-                                <div class="author-thumb"><img src="images/resource/author-2.jpg" alt=""></div>
-                                <div class="comment-info clearfix"><strong>ویلیام دوزر</strong><div class="comment-time">15 خرداد | ساعت 9 صبح تا 19 عصر</div></div>
-                                <div class="text">یک مثال بی اهمیت ، که همیشه یک ورزش بدنی را انجام می دهد ، به جز کسب یک مزیت.</div>
-                                <a class="theme-btn reply-btn" href="#">پاسخ </a>
-                            </div>
-                        </div>
-
-                        <div class="comment-box">
-                            <div class="comment">
-                                <div class="author-thumb"><img src="images/resource/author-3.jpg" alt=""></div>
-                                <div class="comment-info clearfix"><strong>وان ملیسوم </strong><div class="comment-time">15 خرداد | ساعت 9 صبح تا 19 عصر</div></div>
-                                <div class="text">یک مثال بی اهمیت ، که همیشه یک ورزش بدنی را انجام می دهد ، به جز کسب یک مزیت.</div>
-                                <a class="theme-btn reply-btn" href="#">پاسخ </a>
-                            </div>
-                        </div>
-
+                    @Html.Action("showComment")
                     </div>
 
-                    <!-- Comment Form -->
-                    <div class="comment-form">
+                        <!-- Comment Form -->
+                        <div class="comment-form">
 
-                        <div class="group-title"><h3>ارسال یک پیام </h3></div>
+                            <div class="group-title"><h3>ارسال یک پیام </h3></div>
 
-                        <!--Comment Form-->
-                        <form method="post" action="https://expert-themes.com/html/globex/blog.html">
-                            <div class="row clearfix">
+                            <!--Comment Form-->
+                            <form method="post" action="https://expert-themes.com/html/globex/blog.html">
+                                <div class="row clearfix">
 
-                                <div class="col-lg-6 col-md-6 col-sm-12 form-group">
-                                    <input type="text" name="username" placeholder="نام کامل" required="">
+                                    <div class="col-lg-6 col-md-6 col-sm-12 form-group">
+                                        <input type="text" name="username" placeholder="نام کامل" required="" id="txtName">
+                                    </div>
+
+                                    <div class="col-lg-6 col-md-6 col-sm-12 form-group">
+                                        <input type="email" name="email" placeholder="ایمیل" required="" id="txtEmail">
+                                    </div>
+
+                                   
+
+                                    <div class="col-lg-12 col-md-12 col-sm-12 form-group">
+                                        <textarea class="darma" name="message" placeholder="پیام شما" id="txtComment"></textarea>
+                                    </div>
+
+                                    <div class="col-lg-12 col-md-12 col-sm-12 form-group">
+                                        <button class="theme-btn btn-style-three" type="button" name="submit-form" onclick="addComment()"><span class="txt">ارسال نظر </span></button>
+                                    </div>
+
                                 </div>
+                            </form>
 
-                                <div class="col-lg-6 col-md-6 col-sm-12 form-group">
-                                    <input type="email" name="email" placeholder="ایمیل" required="">
-                                </div>
+                        </div>
 
-                                <div class="col-lg-12 col-md-12 col-sm-12 form-group">
-                                    <input type="text" name="subject" placeholder="موضوع" required="">
-                                </div>
 
-                                <div class="col-lg-12 col-md-12 col-sm-12 form-group">
-                                    <textarea class="darma" name="message" placeholder="پیام شما"></textarea>
-                                </div>
-
-                                <div class="col-lg-12 col-md-12 col-sm-12 form-group">
-                                    <button class="theme-btn btn-style-three" type="submit" name="submit-form"><span class="txt">ارسال نظر </span></button>
-                                </div>
-
-                            </div>
-                        </form>
 
                     </div>
-
-
-
-                </div>
             </div>
 
             <!-- Sidebar Side -->
@@ -160,97 +131,7 @@
                         </div>
 
                         <!-- Categories Widget -->
-                        <div class="sidebar-widget categories-widget">
-                            <div class="sidebar-title">
-                                <h5>دسته بندی: -</h5>
-                            </div>
-                            <div class="widget-content">
-                                <ul class="blog-cat">
-                                    <li><a href="#">مشاوره <span>( 05 )</span></a></li>
-                                    <li><a href="#">داده های سایبری <span>( 23 )</span></a></li>
-                                    <li><a href="#">طراحی  <span>( 22 )</span></a></li>
-                                    <li><a href="#">دیجیتال <span>( 15 )</span></a></li>
-                                    <li><a href="#">مارکتینگ <span>( 36 )</span></a></li>
-                                    <li><a href="#">امنیت <span>( 48 )</span></a></li>
-                                    <li><a href="#">UI/UX طراحی  <span>( 06 )</span></a></li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <!-- Categories Widget -->
-                        <div class="sidebar-widget popular-posts">
-                            <div class="sidebar-title">
-                                <h5>پست های اخیر : -</h5>
-                            </div>
-                            <div class="widget-content">
-                                <article class="post">
-                                    <figure class="post-thumb"><img src="images/resource/post-thumb-5.jpg" alt=""><a href="news-detail.html" class="overlay-box"><span class="icon fa fa-link"></span></a></figure>
-                                    <div class="text"><a href="news-detail.html">بهترین فناوری راه حل فناوری اطلاعات جهان را تعریف کنید</a></div>
-                                    <div class="post-info">خرداد 1400</div>
-                                </article>
-                                <article class="post">
-                                    <figure class="post-thumb"><img src="images/resource/post-thumb-6.jpg" alt=""><a href="news-detail.html" class="overlay-box"><span class="icon fa fa-link"></span></a></figure>
-                                    <div class="text"><a href="news-detail.html">شما باید 20 راز تغییر شکل دیجیتال را امتحان کنید</a></div>
-                                    <div class="post-info">خرداد 1400</div>
-                                </article>
-                                <article class="post">
-                                    <figure class="post-thumb"><img src="images/resource/post-thumb-7.jpg" alt=""><a href="news-detail.html" class="overlay-box"><span class="icon fa fa-link"></span></a></figure>
-                                    <div class="text"><a href="news-detail.html">10 چارچوب های PHP شما باید در هر کجا استفاده کنید</a></div>
-                                    <div class="post-info">خرداد 1400</div>
-                                </article>
-                            </div>
-                        </div>
-
-                        <!-- Popular Posts -->
-                        <div class="sidebar-widget popular-tags">
-                            <div class="sidebar-title">
-                                <h5>برچسب ها : -</h5>
-                            </div>
-                            <div class="widget-content">
-                                <a href="#">شرکتی </a>
-                                <a href="#">مشتری </a>
-                                <a href="#">سایبر </a>
-                                <a href="#">داده </a>
-                                <a href="#">طراحی </a>
-                                <a href="#">خدمات اطلاعاتی  </a>
-                                <a href="#">مارکتینگ </a>
-                                <a href="#">موضوع </a>
-                                <a href="#">عملیاتی </a>
-                            </div>
-                        </div>
-
-                        <!-- Instagram Widget -->
-                        <div class="sidebar-widget instagram-widget">
-                            <div class="sidebar-title">
-                                <h5>اینستاگرام : -</h5>
-                            </div>
-                            <div class="widget-content">
-                                <div class="clearfix">
-                                    <figure class="post-thumb"><img src="images/resource/instagram-1.jpg" alt=""><a href="news-detail.html" class="overlay-box"><span class="icon fa fa-link"></span></a></figure>
-                                    <figure class="post-thumb"><img src="images/resource/instagram-2.jpg" alt=""><a href="news-detail.html" class="overlay-box"><span class="icon fa fa-link"></span></a></figure>
-                                    <figure class="post-thumb"><img src="images/resource/instagram-3.jpg" alt=""><a href="news-detail.html" class="overlay-box"><span class="icon fa fa-link"></span></a></figure>
-                                    <figure class="post-thumb"><img src="images/resource/instagram-4.jpg" alt=""><a href="news-detail.html" class="overlay-box"><span class="icon fa fa-link"></span></a></figure>
-                                    <figure class="post-thumb"><img src="images/resource/instagram-5.jpg" alt=""><a href="news-detail.html" class="overlay-box"><span class="icon fa fa-link"></span></a></figure>
-                                    <figure class="post-thumb"><img src="images/resource/instagram-6.jpg" alt=""><a href="news-detail.html" class="overlay-box"><span class="icon fa fa-link"></span></a></figure>
-                                    <figure class="post-thumb"><img src="images/resource/instagram-7.jpg" alt=""><a href="news-detail.html" class="overlay-box"><span class="icon fa fa-link"></span></a></figure>
-                                    <figure class="post-thumb"><img src="images/resource/instagram-8.jpg" alt=""><a href="news-detail.html" class="overlay-box"><span class="icon fa fa-link"></span></a></figure>
-                                    <figure class="post-thumb"><img src="images/resource/instagram-9.jpg" alt=""><a href="news-detail.html" class="overlay-box"><span class="icon fa fa-link"></span></a></figure>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Archives Widget -->
-                        <div class="sidebar-widget archives-widget">
-                            <div class="sidebar-title">
-                                <h5>آرشیو : -</h5>
-                            </div>
-                            <ul class="archive-list">
-                                <li><a href="#">فروردین 1400</a></li>
-                                <li><a href="#">اردیبهشت 1400</a></li>
-                                <li><a href="#">خرداد 1400</a></li>
-                                <li><a href="#">تیر 1400</a></li>
-                            </ul>
-                        </div>
+                        @Html.Action("leftCornerlastBlogs","Blogg")
 
                     </div>
                 </aside>
@@ -292,3 +173,26 @@
     </div>
 </section>
 <!-- End News More Section -->
+<script>
+    function addComment() {
+        $.ajax({
+            url: "/Blogg/AddComment/" + @Model.BlogId,
+            type: "Get",
+            data: { name: $("#txtName").val(), email: $("#txtEmail").val(), comment: $("#txtComment").val() },
+            success: function (data) {
+                alert('کاربر گرامی از ثبت نظر شما سپاسگزاریم'),
+                    location.href = location.href;
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                var Obj = JSON.parse(xhr.responseText);
+                alert('!نظر با موفقیت ثبت نشد');
+            }
+
+        }).done(function (result) {
+            $("#commentList").html(result);
+            $("#txtName").val("");
+            $("#txtEmail").val("");
+            $("#txtComment").val("");
+        })
+    }
+</script>

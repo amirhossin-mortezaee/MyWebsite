@@ -38,7 +38,7 @@
                         <div class="lower-content">
                             <div class="post-date">@item.CreateDate.ConvertToShamsi() <span> </span></div>
                             <ul class="post-meta">
-                                <li><span class="icon flaticon-comment"></span>تعداد 3 نظر </li>
+                                <li><span class="icon flaticon-comment"></span>تعداد @item.BlogComments.Count() نظر </li>
                             </ul>
                             <h4><a href="/Blogs/@item.BlogId">@item.Title</a></h4>
                             <div class="text">@item.ShortDescription</div>
