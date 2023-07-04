@@ -15,6 +15,7 @@ namespace DataLayer.Context
         public DbSet<BlogComment> BlogComments { get; set; }
         public DbSet<BlogGroup> BlogGroups { get; set; }
         public DbSet<Logo> Logo { get; set; }
+        public DbSet<AdminLogins> AdminLogin { get; set; }
         public DbSet<Slider> sliders { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

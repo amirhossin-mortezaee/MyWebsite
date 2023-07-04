@@ -91,10 +91,15 @@
     <Compile Include="Migrations\202307010756017_add-property-tag.Designer.cs">
       <DependentUpon>202307010756017_add-property-tag.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202307040601313_Add-table-AdminLogins.cs" />
+    <Compile Include="Migrations\202307040601313_Add-table-AdminLogins.Designer.cs">
+      <DependentUpon>202307040601313_Add-table-AdminLogins.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Blog.cs" />
     <Compile Include="Models\BlogComment.cs" />
     <Compile Include="Models\BlogGroup.cs" />
+    <Compile Include="Models\AdminLogins.cs" />
     <Compile Include="Models\Logo.cs" />
     <Compile Include="Models\Slider.cs" />
     <Compile Include="Models\ViewModels\BlogViewModel.cs" />
@@ -104,11 +109,13 @@
     <Compile Include="Repositories\IBlogCommentRepository.cs" />
     <Compile Include="Repositories\IBlogGroupRepository.cs" />
     <Compile Include="Repositories\IBlogRepository.cs" />
+    <Compile Include="Repositories\ILoginRepository.cs" />
     <Compile Include="Repositories\ILogoRepository.cs" />
     <Compile Include="Repositories\ISliderRepository.cs" />
     <Compile Include="Services\BlogCommentRepository.cs" />
     <Compile Include="Services\BlogGroupRipository.cs" />
     <Compile Include="Services\BlogRepository.cs" />
+    <Compile Include="Services\LoginRepository.cs" />
     <Compile Include="Services\LogoRepository.cs" />
     <Compile Include="Services\SliderRepository.cs" />
   </ItemGroup>
@@ -128,6 +135,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202307010756017_add-property-tag.resx">
       <DependentUpon>202307010756017_add-property-tag.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202307040601313_Add-table-AdminLogins.resx">
+      <DependentUpon>202307040601313_Add-table-AdminLogins.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

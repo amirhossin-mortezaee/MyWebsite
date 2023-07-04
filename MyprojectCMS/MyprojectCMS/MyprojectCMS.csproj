@@ -127,6 +127,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\AdminLoginsController.cs" />
     <Compile Include="Areas\Admin\Controllers\BlogCommentsController.cs" />
     <Compile Include="Areas\Admin\Controllers\BlogGroupsController.cs" />
     <Compile Include="Areas\Admin\Controllers\BlogsController.cs" />
@@ -1784,6 +1785,11 @@
     <Content Include="ckeditor\_samples\adobeair\run.bat" />
     <Content Include="ckeditor\_samples\adobeair\run.sh" />
     <Content Include="ckeditor\_samples\assets\output_for_flash.fla" />
+    <Content Include="Areas\Admin\Views\AdminLogins\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\AdminLogins\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\AdminLogins\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\AdminLogins\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\AdminLogins\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\Jquery-1.9.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
